@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/main_page"
+        android:title="@string/main_page"/>
+
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/youtube"
+        android:title="@string/youtube"/>
+
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/invite"
+        android:title="@string/invite"/>
+
+</menu>

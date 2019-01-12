@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding"
+    tools:context=".activities.SearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/how_to_search_for_account_instruction" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/search_account_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login"
+                android:text="SuperMiko69"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/choose_platform_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <!--todo zmienic na ikonke wyszukiwania-->
+            <ImageView
+                android:id="@+id/pc_imageview"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/default_small_margin"
+                android:alpha="@dimen/image_fully_visible"
+                android:src="@drawable/pc" />
+
+            <!--todo zmienic na ikonke wyszukiwania-->
+            <ImageView
+                android:id="@+id/xbok_imageview"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/default_small_margin"
+                android:alpha="@dimen/image_half_visible"
+                android:src="@drawable/xbox" />
+
+            <!--todo zmienic na ikonke wyszukiwania-->
+            <ImageView
+                android:id="@+id/ps4_imageview"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/default_small_margin"
+                android:alpha="@dimen/image_half_visible"
+                android:src="@drawable/ps4" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/search" />
+
+            <ProgressBar
+                android:id="@+id/search_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
