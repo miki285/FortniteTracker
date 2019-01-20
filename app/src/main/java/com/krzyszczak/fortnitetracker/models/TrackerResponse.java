@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import lombok.Getter;
+
+@Getter
 public class TrackerResponse implements Serializable {
-    @SerializedName("stats") PlayerInfo soloStats;
+    @SerializedName("stats") PlayerInfo stats;
 }

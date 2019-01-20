@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        bottomNavigation.setSelectedItemId(R.id.main_page);
     }
 
     private void changeFragment(String tag, Fragment fragment) {
