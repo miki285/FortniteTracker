@@ -13,6 +13,7 @@ import com.krzyszczak.fortnitetracker.fragments.MainPageFragment;
 import com.krzyszczak.fortnitetracker.fragments.YoutubeFragment;
 import com.krzyszczak.fortnitetracker.models.PlayerInfo;
 import com.krzyszczak.fortnitetracker.models.TrackerResponse;
+import com.krzyszczak.fortnitetracker.models.YTResponse;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
 
     public static Intent createIntent(Context context, Platform platform, String playerNick,
-                                      TrackerResponse playerInfo) {
+                                      TrackerResponse playerInfo, YTResponse videoInfo) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(PLATFORM_EXTRA, platform);
         intent.putExtra(PLAYER_NICK_EXTRA, playerNick);

@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import lombok.Getter;
+
+@Getter
 public class PlayerInfo implements Serializable {
 
     @SerializedName("curr_p2") PlayerStats soloStats;

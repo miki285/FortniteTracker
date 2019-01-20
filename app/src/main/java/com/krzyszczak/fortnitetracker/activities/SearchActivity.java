@@ -11,8 +11,10 @@ import android.widget.ProgressBar;
 import com.krzyszczak.fortnitetracker.Platform;
 import com.krzyszczak.fortnitetracker.R;
 import com.krzyszczak.fortnitetracker.api.ApiAdapter;
+import com.krzyszczak.fortnitetracker.api.YTApiAdapter;
 import com.krzyszczak.fortnitetracker.models.PlayerInfo;
 import com.krzyszczak.fortnitetracker.models.TrackerResponse;
+import com.krzyszczak.fortnitetracker.models.YTResponse;
 import com.krzyszczak.fortnitetracker.utils.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +44,9 @@ public class SearchActivity extends AppCompatActivity {
     private float halfVisibleAlpha;
 
     private Disposable disposable;
+    private Disposable YTdisposable;
+
+    String playerNick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +120,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchForAccount() {
-        final String playerNick = searchAccountEditText.getText().toString();
+        playerNick = searchAccountEditText.getText().toString();
 
-        disposable = ApiAdapter.getInstance().getPlayerStats(platform, playerNick)
+        YTdisposable = ApiAdapter.getInstance().getPlayerStats(platform, playerNick)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -134,8 +139,38 @@ public class SearchActivity extends AppCompatActivity {
                 .subscribe(new Consumer<TrackerResponse>() {
                     @Override
                     public void accept(TrackerResponse playerInfo) throws Exception {
+                        searchForYT(playerInfo);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Utils.logError("error occured : " + throwable.getMessage());
+                    }
+                });
+    }
+
+
+
+    private void searchForYT(final TrackerResponse playerInfo) {
+        YTdisposable = YTApiAdapter.getInstance().getVideos()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception { searchingForAccount(true);
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        searchingForAccount(false);
+                    }
+                })
+                .subscribe(new Consumer<YTResponse>() {
+                    @Override
+                    public void accept(YTResponse videoInfo) throws Exception {
                         startActivity(MainActivity.createIntent(SearchActivity.this,
-                                platform, playerNick, playerInfo));
+                                platform, playerNick, playerInfo, videoInfo));
                     }
                 }, new Consumer<Throwable>() {
                     @Override

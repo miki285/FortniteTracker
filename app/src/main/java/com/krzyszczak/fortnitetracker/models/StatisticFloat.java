@@ -4,7 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-class StatisticFloat implements Serializable {
+import lombok.Getter;
+
+@Getter
+public class StatisticFloat implements Serializable {
 
     @SerializedName("label") String label;
     @SerializedName("field") String field;
