@@ -19,14 +19,31 @@ import android.view.ViewGroup;
 import com.krzyszczak.fortnitetracker.OnYoutubeClipClickedListener;
 import com.krzyszczak.fortnitetracker.R;
 import com.krzyszczak.fortnitetracker.adapters.YoutubeRecyclerAdapter;
+import com.krzyszczak.fortnitetracker.models.TrackerResponse;
 import com.krzyszczak.fortnitetracker.models.YoutubeClip;
+import com.krzyszczak.fortnitetracker.models.youtube.YTResponse;
+
 
 public class YoutubeFragment extends Fragment {
 
     public static String TAG = "YoutubeFragmentTag";
+    private static final String VIDEO_INFO_EXTRA = "VIDEO_INFO_EXTRA";
+    YTResponse ytResponse;
 
-    public static YoutubeFragment newInstance() {
-        return new YoutubeFragment();
+    public static YoutubeFragment newInstance(YTResponse serializableExtra) {
+        YoutubeFragment youtubeFragment = new YoutubeFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(VIDEO_INFO_EXTRA, serializableExtra);
+        youtubeFragment.setArguments(args);
+        return youtubeFragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            ytResponse = (YTResponse) getArguments().getSerializable(VIDEO_INFO_EXTRA);
+        }
     }
 
     @Override
@@ -42,7 +59,7 @@ public class YoutubeFragment extends Fragment {
         RecyclerView recycler = (RecyclerView) view;
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycler.setAdapter(new YoutubeRecyclerAdapter(YoutubeClip.getAllClips(),
+        recycler.setAdapter(new YoutubeRecyclerAdapter(YoutubeClip.getAllClips(ytResponse),
                 new OnYoutubeClipClickedListener() {
             @Override
             public void onClick(YoutubeClip youtubeClip) {

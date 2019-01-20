@@ -5,16 +5,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.krzyszczak.fortnitetracker.Platform;
 import com.krzyszczak.fortnitetracker.R;
 import com.krzyszczak.fortnitetracker.api.ApiAdapter;
 import com.krzyszczak.fortnitetracker.api.YTApiAdapter;
-import com.krzyszczak.fortnitetracker.models.PlayerInfo;
 import com.krzyszczak.fortnitetracker.models.TrackerResponse;
-import com.krzyszczak.fortnitetracker.models.YTResponse;
+import com.krzyszczak.fortnitetracker.models.youtube.YTResponse;
 import com.krzyszczak.fortnitetracker.utils.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;

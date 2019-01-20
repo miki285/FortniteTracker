@@ -1,5 +1,9 @@
 package com.krzyszczak.fortnitetracker.adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +12,8 @@ import android.widget.TextView;
 import com.krzyszczak.fortnitetracker.OnYoutubeClipClickedListener;
 import com.krzyszczak.fortnitetracker.R;
 import com.krzyszczak.fortnitetracker.models.YoutubeClip;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -33,11 +39,28 @@ public class YoutubeRecyclerAdapter extends RecyclerView.Adapter<YoutubeRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull YoutubeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final YoutubeViewHolder holder, int position) {
         final YoutubeClip youtubeClip = clips.get(position);
 
-        holder.titleTextView.setText(youtubeClip.getTitle());
-        holder.itemView.setBackgroundResource(youtubeClip.getFrameDrawable());
+//        holder.titleTextView.setText(youtubeClip.getTitle());
+        //TODO
+//        holder.itemView.setBackgroundResource(youtubeClip.getFrameDrawable());
+        Picasso.get().load(youtubeClip.getUrl()).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                holder.itemView.setBackground(new BitmapDrawable(bitmap));
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                Log.d("TAG", "FAILED");
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                Log.d("TAG", "Prepare Load");
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

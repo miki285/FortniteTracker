@@ -11,9 +11,8 @@ import com.krzyszczak.fortnitetracker.R;
 import com.krzyszczak.fortnitetracker.fragments.InviteFragment;
 import com.krzyszczak.fortnitetracker.fragments.MainPageFragment;
 import com.krzyszczak.fortnitetracker.fragments.YoutubeFragment;
-import com.krzyszczak.fortnitetracker.models.PlayerInfo;
 import com.krzyszczak.fortnitetracker.models.TrackerResponse;
-import com.krzyszczak.fortnitetracker.models.YTResponse;
+import com.krzyszczak.fortnitetracker.models.youtube.YTResponse;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PLATFORM_EXTRA = "PLATFORM_EXTRA";
     private static final String PLAYER_NICK_EXTRA = "PLAYER_NICK_EXTRA";
     private static final String PLAYER_INFO_EXTRA = "PLAYER_INFO_EXTRA";
+    private static final String VIDEO_INFO_EXTRA = "VIDEO_INFO_EXTRA";
     private BottomNavigationView bottomNavigation;
 
     public static Intent createIntent(Context context, Platform platform, String playerNick,
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(PLATFORM_EXTRA, platform);
         intent.putExtra(PLAYER_NICK_EXTRA, playerNick);
         intent.putExtra(PLAYER_INFO_EXTRA, playerInfo);
+        intent.putExtra(VIDEO_INFO_EXTRA, videoInfo);
         return intent;
     }
 
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case R.id.youtube: {
-                        changeFragment(YoutubeFragment.TAG, YoutubeFragment.newInstance());
+                        changeFragment(YoutubeFragment.TAG, YoutubeFragment.newInstance(
+                                (YTResponse) getIntent().getSerializableExtra(VIDEO_INFO_EXTRA)
+                        ));
                         break;
                     }
                     case R.id.invite: {
