@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:icon="@drawable/stats"
+        android:icon="@drawable/stats1"
         android:id="@+id/main_page"
         android:title="@string/main_page"/>
 
     <item
-        android:icon="@drawable/yt"
+        android:icon="@drawable/yt2"
         android:id="@+id/youtube"
-        android:title="@string/youtube"/>
+        android:title="@string/youtube"
+
+        />
 
     <item
-        android:icon="@drawable/invite"
+        android:icon="@drawable/invite1"
         android:id="@+id/invite"
         android:title="@string/invite"/>
 
