@@ -8,4 +8,6 @@
     <color name="colorSquads">#9042a6</color>
     <color name="colorTitles">#292929</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorEnd">#d42f2f</color>
+
 </resources>
