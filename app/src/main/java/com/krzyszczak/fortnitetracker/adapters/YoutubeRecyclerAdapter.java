@@ -42,9 +42,6 @@ public class YoutubeRecyclerAdapter extends RecyclerView.Adapter<YoutubeRecycler
     public void onBindViewHolder(@NonNull final YoutubeViewHolder holder, int position) {
         final YoutubeClip youtubeClip = clips.get(position);
 
-//        holder.titleTextView.setText(youtubeClip.getTitle());
-        //TODO
-//        holder.itemView.setBackgroundResource(youtubeClip.getFrameDrawable());
         Picasso.get().load(youtubeClip.getUrl()).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {

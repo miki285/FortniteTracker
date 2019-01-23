@@ -61,11 +61,11 @@ public class YoutubeFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         recycler.setAdapter(new YoutubeRecyclerAdapter(YoutubeClip.getAllClips(ytResponse),
                 new OnYoutubeClipClickedListener() {
-            @Override
-            public void onClick(YoutubeClip youtubeClip) {
-                startYoutube(youtubeClip.getVideoId());
-            }
-        }));
+                    @Override
+                    public void onClick(YoutubeClip youtubeClip) {
+                        startYoutube(youtubeClip.getVideoId());
+                    }
+                }));
     }
 
     private void startYoutube(String videoId) {

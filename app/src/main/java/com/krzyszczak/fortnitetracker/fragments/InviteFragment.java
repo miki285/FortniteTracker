@@ -62,7 +62,6 @@ public class InviteFragment extends Fragment {
         endDateTextView = view.findViewById(R.id.picked_end_date_textview);
         endTimeTextView = view.findViewById(R.id.picked_end_time_textview);
         createEventButton = view.findViewById(R.id.create_event_button);
-//        inviteEditText = view.findViewById(R.id.invite_edittext);
 
         final Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -142,7 +141,7 @@ public class InviteFragment extends Fragment {
         Calendar finishTime = Calendar.getInstance();
         finishTime.set(endDate.getYear(), endDate.getMonth(), endDate.getDayOfMonth(), endTime.getHours(), endTime.getMinutes());
         Intent intent = new Intent(Intent.ACTION_INSERT)
-                .setData(CONTENT_URI)
+                .setData(CalendarContract.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, finishTime.getTimeInMillis())
                 .putExtra(TITLE, "Fortnite")
